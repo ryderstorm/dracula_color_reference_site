@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="description"
           content="Explore the colors of the popular Dracula theme for use in your web projects. Copy the CSS code for easy integration into your own stylesheets.">
-
+    <link rel="icon" type="image/x-icon" href="https://draculatheme.com/static/img/favicon.ico" />
+    <script async src="https://umami.stormhold.net/script.js"
+            data-website-id="831aec53-648f-4f2f-b03e-480c21969c69"></script>
     <title>The Dracula Theme: A Visual Reference and CSS Variables for Web Design</title>
     <style>
       :root {
@@ -303,6 +305,7 @@
         thumbWrapper.className = 'thumb-wrapper'
         tippy(thumbWrapper, { content: "Click to copy RGB value", placement: 'bottom' })
         addClickToCopy(thumbWrapper, color.rgb)
+        thumbWrapper.onclick = () => umami.track(`clicked-color-${color.name}`)
         const thumb = document.createElement('div')
         thumb.className = 'thumb'
         thumb.style.backgroundColor = color.rgb
@@ -325,6 +328,7 @@
       const code = document.createElement('pre')
       code.innerText = content
       addClickToCopy(container, content)
+      container.onclick = () => umami.track(`clicked-css-${container.id}`)
       tippy(container, { content: "Click to copy CSS" })
       container.appendChild(code)
     }
