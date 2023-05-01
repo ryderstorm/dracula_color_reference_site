@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description"
+          content="Explore the colors of the popular Dracula theme for use in your web projects. Copy the CSS code for easy integration into your own stylesheets.">
+
+    <title>The Dracula Theme: A Visual Reference and CSS Variables for Web Design</title>
+    <style>
+      :root {
+        --shadow: 0px 0px 6px 3px rgba(255, 255, 255, 0.5);
+        --black: rgb(33, 34, 44);
+        --grey: rgb(65, 69, 88);
+        --white: rgb(248, 248, 242);
+        --cyan: rgb(128, 255, 234);
+        --green: rgb(138, 255, 128);
+        --orange: rgb(255, 202, 128);
+        --pink: rgb(255, 128, 191);
+        --purple: rgb(149, 128, 255);
+        --red: rgb(255, 149, 128);
+        --yellow: rgb(255, 255, 128);
+      }
+
+      body {
+        background-color: black;
+        color: white;
+        font-family: 'Fira Code', monospace;
+      }
+
+
+      h1 {
+        font-size: 3rem;
+      }
+
+      p {
+        font-size: 1.5rem;
+      }
+
+      a {
+        color: var(--purple);
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+        color: var(--orange);
+      }
+
+      ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--black);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background-color: var(--grey);
+        border-radius: 5px;
+      }
+
+      #header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 20px;
+        text-align: center;
+        margin: 0 auto;
+        width: 100%;
+        background-color: var(--black);
+        padding: 10px;
+      }
+
+      #content {
+        margin: 50px auto;
+        width: 80%;
+        text-align: center;
+      }
+
+      #subtitle {
+        font-style: italic;
+        color: var(--yellow);
+      }
+
+      #main-thumbs-wrapper,
+      #all-thumbs-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .thumb-wrapper {
+        text-align: center;
+        border-radius: 10px;
+        padding: 10px;
+        width: 175px;
+        transition: background-color 0.25s, box-shadow 0.25s;
+      }
+
+      .thumb-wrapper:hover {
+        box-shadow: var(--shadow);
+        cursor: pointer;
+      }
+
+      .thumb-wrapper:hover .thumb {
+        box-shadow: var(--shadow);
+      }
+
+      .thumb {
+        border-radius: 10px;
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+        display: inline-block;
+        transition: box-shadow 0.25s;
+      }
+
+      .name {
+        font-size: 1.2rem;
+        margin: 1em;
+        overflow-wrap: break-word;
+      }
+
+      .rgb {
+        font-size: 0.8rem;
+        margin: 1em;
+      }
+
+
+      .code-wrapper {
+        margin: 0 auto;
+        width: max-content;
+        padding: 10px;
+        border-radius: 10px;
+      }
+
+      .code-wrapper>pre {
+        text-align: left;
+        background-color: var(--black);
+        padding: 10px;
+        border-radius: 10px;
+      }
+
+      .code-wrapper:hover {
+        box-shadow: var(--shadow);
+      }
+
+      .code-wrapper:hover pre {
+        box-shadow: var(--shadow);
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <div id="header">
+      <a href="https://stormhold.net">Back to Stormhold main site.</a>
+    </div>
+    <div id="content">
+      <h1>Dracula Colors</h1>
+      <h2 id="subtitle">Visual Reference and CSS Variables for Web Design</h2>
+      <p>Here are the main colors of the Dracula theme as pulled from the <a
+           href="https://github.com/dracula/dracula-ui?search=1#zap-using-with-html">Dracula UI</a> repo on <a
+           href="https://github.com/dracula">GitHub</a>,
+        specifically the <a href="https://unpkg.com/dracula-ui@1.0.3/styles/dracula-ui.css">Unpkg link</a>.
+      </p>
+      <p>
+        See this <a
+           href="https://stormhold.net/the-dracula-theme-a-visual-reference-and-css-variables-for-web-design">blog
+          post</a> for more information.
+      </p>
+      <hr>
+      <h3>Main Colors</h3>
+      <div id="main-thumbs-wrapper"></div>
+      <div id="main-code-wrapper" class="code-wrapper">
+        <h4>CSS Variables for Main Colors</h4>
+      </div>
+      <hr>
+      <h3>Extended Colors</h3>
+      <div id="all-thumbs-wrapper"></div>
+      <div id="all-code-wrapper" class="code-wrapper">
+        <h4>CSS Variables for Extended Colors</h4>
+      </div>
+    </div>
+  </body>
+  <script src="https://unpkg.com/@popperjs/core@2"></script>
+  <script src="https://unpkg.com/tippy.js@6"></script>
+  <script>
+    const mainColors = [
+      { "name": "black", rgb: "rgb(33, 34, 44)", },
+      { "name": "grey", rgb: "rgb(65, 69, 88)", },
+      { "name": "white", rgb: "rgb(248, 248, 242)", },
+      { "name": "cyan", rgb: "rgb(128, 255, 234)", },
+      { "name": "green", rgb: "rgb(138, 255, 128)", },
+      { "name": "orange", rgb: "rgb(255, 202, 128)", },
+      { "name": "pink", rgb: "rgb(255, 128, 191)", },
+      { "name": "purple", rgb: "rgb(149, 128, 255)", },
+      { "name": "red", rgb: "rgb(255, 149, 128)", },
+      { "name": "yellow", rgb: "rgb(255, 255, 128)", },
+    ]
+    const allColors = [
+      { "name": "disabled", rgb: "rgb(108, 115, 147)", },
+      { "name": "glowColor", rgb: "rgba(255, 255, 255, 0.25)", },
+      { "name": "blackSecondary", rgb: "rgb(65, 69, 88)", },
+      { "name": "blackTernary", rgb: "rgb(167, 171, 190)", },
+      { "name": "blackLight", rgb: "rgba(33, 34, 44, 0.05)", },
+      { "name": "greySecondary", rgb: "rgb(98, 103, 132)", },
+      { "name": "greyTernary", rgb: "rgb(182, 185, 201)", },
+      { "name": "greyLight", rgb: "rgba(65, 69, 88, 0.05)", },
+      { "name": "whiteSecondary", rgb: "rgb(255, 255, 255)", },
+      { "name": "whiteLight", rgb: "rgba(248, 248, 242, 0.05)", },
+      { "name": "cyanSecondary", rgb: "rgb(204, 255, 246)", },
+      { "name": "cyanLight", rgb: "rgba(128, 255, 234, 0.05)", },
+      { "name": "cyan-transparent", rgb: "rgba(128, 255, 234, 0.1)", },
+      { "name": "cyan-100", rgb: "rgba(128, 255, 234, 0.1)", },
+      { "name": "cyan-200", rgb: "rgba(128, 255, 234, 0.2)", },
+      { "name": "cyan-300", rgb: "rgba(128, 255, 234, 0.3)", },
+      { "name": "cyan-400", rgb: "rgba(128, 255, 234, 0.4)", },
+      { "name": "cyan-500", rgb: "rgba(128, 255, 234, 0.5)", },
+      { "name": "cyan-600", rgb: "rgba(128, 255, 234, 0.6)", },
+      { "name": "cyan-700", rgb: "rgba(128, 255, 234, 0.7)", },
+      { "name": "cyan-800", rgb: "rgba(128, 255, 234, 0.8)", },
+      { "name": "cyan-900", rgb: "rgba(128, 255, 234, 0.9)", },
+      { "name": "greenSecondary", rgb: "rgb(208, 255, 204)", },
+      { "name": "greenLight", rgb: "rgba(138, 255, 128, 0.05)", },
+      { "name": "green-transparent", rgb: "rgba(138, 255, 128, 0.1)", },
+      { "name": "green-100", rgb: "rgba(138, 255, 128, 0.1)", },
+      { "name": "green-200", rgb: "rgba(138, 255, 128, 0.2)", },
+      { "name": "green-300", rgb: "rgba(138, 255, 128, 0.3)", },
+      { "name": "green-400", rgb: "rgba(138, 255, 128, 0.4)", },
+      { "name": "green-500", rgb: "rgba(138, 255, 128, 0.5)", },
+      { "name": "green-600", rgb: "rgba(138, 255, 128, 0.6)", },
+      { "name": "green-700", rgb: "rgba(138, 255, 128, 0.7)", },
+      { "name": "green-800", rgb: "rgba(138, 255, 128, 0.8)", },
+      { "name": "green-900", rgb: "rgba(138, 255, 128, 0.9)", },
+      { "name": "orangeSecondary", rgb: "rgb(255, 234, 204)", },
+      { "name": "orangeLight", rgb: "rgba(255, 202, 128, 0.05)", },
+      { "name": "orange-transparent", rgb: "rgba(255, 202, 128, 0.1)", },
+      { "name": "orange-100", rgb: "rgba(255, 202, 128, 0.1)", },
+      { "name": "orange-200", rgb: "rgba(255, 202, 128, 0.2)", },
+      { "name": "orange-300", rgb: "rgba(255, 202, 128, 0.3)", },
+      { "name": "orange-400", rgb: "rgba(255, 202, 128, 0.4)", },
+      { "name": "orange-500", rgb: "rgba(255, 202, 128, 0.5)", },
+      { "name": "orange-600", rgb: "rgba(255, 202, 128, 0.6)", },
+      { "name": "orange-700", rgb: "rgba(255, 202, 128, 0.7)", },
+      { "name": "orange-800", rgb: "rgba(255, 202, 128, 0.8)", },
+      { "name": "orange-900", rgb: "rgba(255, 202, 128, 0.9)", },
+      { "name": "pinkSecondary", rgb: "rgb(255, 204, 230)", },
+      { "name": "pinkLight", rgb: "rgba(255, 128, 191, 0.05)", },
+      { "name": "pink-transparent", rgb: "rgba(255, 128, 191, 0.1)", },
+      { "name": "pink-100", rgb: "rgba(255, 128, 191, 0.1)", },
+      { "name": "pink-200", rgb: "rgba(255, 128, 191, 0.2)", },
+      { "name": "pink-300", rgb: "rgba(255, 128, 191, 0.3)", },
+      { "name": "pink-400", rgb: "rgba(255, 128, 191, 0.4)", },
+      { "name": "pink-500", rgb: "rgba(255, 128, 191, 0.5)", },
+      { "name": "pink-600", rgb: "rgba(255, 128, 191, 0.6)", },
+      { "name": "pink-700", rgb: "rgba(255, 128, 191, 0.7)", },
+      { "name": "pink-800", rgb: "rgba(255, 128, 191, 0.8)", },
+      { "name": "pink-900", rgb: "rgba(255, 128, 191, 0.9)", },
+      { "name": "purpleSecondary", rgb: "rgb(212, 204, 255)", },
+      { "name": "purpleLight", rgb: "rgba(149, 128, 255, 0.05)", },
+      { "name": "purple-transparent", rgb: "rgba(149, 128, 255, 0.1)", },
+      { "name": "purple-100", rgb: "rgba(149, 128, 255, 0.1)", },
+      { "name": "purple-200", rgb: "rgba(149, 128, 255, 0.2)", },
+      { "name": "purple-300", rgb: "rgba(149, 128, 255, 0.3)", },
+      { "name": "purple-400", rgb: "rgba(149, 128, 255, 0.4)", },
+      { "name": "purple-500", rgb: "rgba(149, 128, 255, 0.5)", },
+      { "name": "purple-600", rgb: "rgba(149, 128, 255, 0.6)", },
+      { "name": "purple-700", rgb: "rgba(149, 128, 255, 0.7)", },
+      { "name": "purple-800", rgb: "rgba(149, 128, 255, 0.8)", },
+      { "name": "purple-900", rgb: "rgba(149, 128, 255, 0.9)", },
+      { "name": "redSecondary", rgb: "rgb(255, 212, 204)", },
+      { "name": "redLight", rgb: "rgba(255, 149, 128, 0.05)", },
+      { "name": "red-transparent", rgb: "rgba(255, 149, 128, 0.1)", },
+      { "name": "red-100", rgb: "rgba(255, 149, 128, 0.1)", },
+      { "name": "red-200", rgb: "rgba(255, 149, 128, 0.2)", },
+      { "name": "red-300", rgb: "rgba(255, 149, 128, 0.3)", },
+      { "name": "red-400", rgb: "rgba(255, 149, 128, 0.4)", },
+      { "name": "red-500", rgb: "rgba(255, 149, 128, 0.5)", },
+      { "name": "red-600", rgb: "rgba(255, 149, 128, 0.6)", },
+      { "name": "red-700", rgb: "rgba(255, 149, 128, 0.7)", },
+      { "name": "red-800", rgb: "rgba(255, 149, 128, 0.8)", },
+      { "name": "red-900", rgb: "rgba(255, 149, 128, 0.9)", },
+      { "name": "yellowSecondary", rgb: "rgb(255, 255, 204)" },
+      { "name": "yellowLight", rgb: "rgba(255, 255, 128, 0.05)", },
+      { "name": "yellow-transparent", rgb: "rgba(255, 255, 128, 0.1)", },
+      { "name": "yellow-100", rgb: "rgba(255, 255, 128, 0.1)", },
+      { "name": "yellow-200", rgb: "rgba(255, 255, 128, 0.2)", },
+      { "name": "yellow-300", rgb: "rgba(255, 255, 128, 0.3)", },
+      { "name": "yellow-400", rgb: "rgba(255, 255, 128, 0.4)", },
+      { "name": "yellow-500", rgb: "rgba(255, 255, 128, 0.5)", },
+      { "name": "yellow-600", rgb: "rgba(255, 255, 128, 0.6)", },
+      { "name": "yellow-700", rgb: "rgba(255, 255, 128, 0.7)", },
+      { "name": "yellow-800", rgb: "rgba(255, 255, 128, 0.8)", },
+      { "name": "yellow-900", rgb: "rgba(255, 255, 128, 0.9)", },
+    ]
+    function createThumbs(colors, container) {
+      colors.forEach(color => {
+        const thumbWrapper = document.createElement('div')
+        thumbWrapper.className = 'thumb-wrapper'
+        tippy(thumbWrapper, { content: "Click to copy RGB value", placement: 'bottom' })
+        addClickToCopy(thumbWrapper, color.rgb)
+        const thumb = document.createElement('div')
+        thumb.className = 'thumb'
+        thumb.style.backgroundColor = color.rgb
+        const name = document.createElement('p')
+        name.className = 'name'
+        name.innerText = color.name
+        const rgb = document.createElement('p')
+        rgb.className = 'rgb'
+        rgb.innerText = color.rgb
+        thumbWrapper.appendChild(thumb)
+        thumbWrapper.appendChild(name)
+        thumbWrapper.appendChild(rgb)
+        container.appendChild(thumbWrapper)
+      })
+    }
+
+    function createCode(colors, container) {
+      const values = colors.map(color => `  --${color.name}: ${color.rgb};`).join("\n")
+      const content = `:root {\n${values}\n}`
+      const code = document.createElement('pre')
+      code.innerText = content
+      addClickToCopy(container, content)
+      tippy(container, { content: "Click to copy CSS" })
+      container.appendChild(code)
+    }
+
+    function addClickToCopy(element, contentToCopy) {
+      element.addEventListener('click', () => {
+        navigator.clipboard.writeText(contentToCopy).then(() => {
+          console.log('Copied to clipboard: ' + contentToCopy)
+          const originalContent = element._tippy.props.content
+          element._tippy.setContent("Copied!")
+          element._tippy.show();
+          setTimeout(() => {
+            element._tippy.hide();
+            setTimeout(() => {
+              element._tippy.setContent(originalContent)
+              element._tippy.setContent(originalContent)
+            }, 250);
+          }, 500);
+        });
+      })
+    }
+    createCode(mainColors, document.getElementById('main-code-wrapper'))
+    createCode(allColors, document.getElementById('all-code-wrapper'))
+    createThumbs(mainColors, document.getElementById('main-thumbs-wrapper'));
+    createThumbs(allColors, document.getElementById('all-thumbs-wrapper'));
+
+  </script>
+
+</html>
